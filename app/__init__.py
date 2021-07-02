@@ -1,9 +1,15 @@
+import os
 from os import write
 import csv
 from werkzeug.utils import redirect
 from flask import Flask, render_template, redirect, request
+from . import db
 
 app = Flask(__name__)
+app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+db.init_app(app)
+## Rest of the file
+
 
 @app.route('/')
 def index():
