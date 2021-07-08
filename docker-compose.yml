@@ -20,7 +20,7 @@ services:
     volumes:
       - mydatabase:/var/lib/postgresql/data
 
-   nginx:
+  nginx:
     image: jonasal/nginx-certbot:latest
     restart: unless-stopped
     env_file:
