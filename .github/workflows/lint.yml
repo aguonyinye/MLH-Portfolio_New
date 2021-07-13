@@ -29,5 +29,7 @@ jobs:
         uses: wearerequired/lint-action@v1.10.0
         with:
           black: true
-          flake8: false
+          flake8: true
+          flake8_args: app/ --max-line-length=120
+
       
