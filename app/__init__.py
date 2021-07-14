@@ -1,8 +1,7 @@
 import os
-from os import write
 import csv
 from werkzeug.utils import redirect
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -48,8 +47,6 @@ def register():
         password = request.form.get("password")
         error = None
 
-        user = UserModel.query.filter_by(username=username).first()
-
         if not username:
             error = "Username is required."
         elif not password:
@@ -64,11 +61,8 @@ def register():
         else:
             return error, 418
 
-    ## TODO: Return a restister page
+    # TODO: Return a restister page
     return render_template("register.html", title="register")
-
-
-# ...
 
 
 @app.route("/login", methods=("GET", "POST"))
@@ -88,7 +82,8 @@ def login():
             return "Login Successful", 200
         else:
             return error, 418
-    ## TODO: Return a login page
+
+    # TODO: Return a login page
     return render_template("login.html", title="login")
 
 
@@ -135,7 +130,7 @@ def submit():
                 "Thank you for contacting me. I will get in touch with you shortly."
             )
             return render_template("submission.html", message=message_form)
-        except:
+        except request.DoesNotExist:
             message_form = "Database writing error!"
             return render_template("submission.html", message=message_form)
     else:
@@ -147,7 +142,7 @@ def submit():
 def page_direct(page_name="/"):
     try:
         return render_template(page_name)
-    except:
+    except request.DoesNotExist:
         return redirect("/")
 
 
