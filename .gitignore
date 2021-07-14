@@ -2,5 +2,6 @@
 __pycache__
 *.pyc
 .env
+python-virtualenv
 python3-virtualenv
 flask.sqlite
