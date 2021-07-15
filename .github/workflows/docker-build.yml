@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  docker build:
+  docker-build:
     name: Run Docker build
     runs-on: ubuntu-latest
     steps:
