@@ -130,7 +130,7 @@ def submit():
                 "Thank you for contacting me. I will get in touch with you shortly."
             )
             return render_template("submission.html", message=message_form)
-        except:
+        except User.DoesNotExist:
             message_form = "Database writing error!"
             return render_template("submission.html", message=message_form)
     else:
@@ -142,7 +142,7 @@ def submit():
 def page_direct(page_name="/"):
     try:
         return render_template(page_name)
-    except:
+    except User.DoesNotExist:
         return redirect("/")
 
 
