@@ -94,7 +94,10 @@ def index():
 
 @app.route("/health")
 def health():
-    return "bad request!", 200
+    yechi = UserModel.query.filter_by(username="yechi").first()
+    has_yechi = "yes" if yechi is not None else "no"
+    return f"Works,has_yechi: {has_yechi}"
+    
 
 
 """
